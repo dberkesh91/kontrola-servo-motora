@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html><head><title>Eline control</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="jquery-ui-1.9.2.custom.min.css">
+</head>
+<body>
+
+<div id="console" class="block">Initialization.....</br></div>
+
+<div id="gui" style="display:none" class="block">
+    <div class="zone-title">Projekat</div>
+    <button id="toggle">SWITCH ON</button>
+    <div id="current-state">The motor is currently OFF</div>
+    <hr>
+    <div style="text-align:center">
+        <table style="width:100%; text-align:center">
+            <tr>
+                <td>
+
+                </td>
+                <td>
+                    <div class="zone-setpoint" id="actual_velocity">- rpm</div>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        </table>
+		<p>Temperature: <span id="actual_temp" class="zone-temperature">- C</span></p>
+		<p>Voltage: <span id="actual_voltage" class="zone-temperature">- V</span></p>
+    </div>
+
+    <div style="font-size:18px">Target velocity <span type="text" id="vel_amount" readonly style="border:0; color:#f6931f; font-weight:bold;"></span></div>
+
+	<div id="datetime"></div>
+    <hr>
+
+    <div id="vel_slider"></div>
+    <div id="vel_slider_values">
+      <div class="slider_values" id="min">-1500</div>
+      <div class="slider_values" id="zero">0</div>
+      <div class="slider_values" id="max">1500</div>
+    </div>
+
+  </div>
+
+  <script>window.jQuery || document.write('<script src="jquery-1.9.0.min.js"><\/script>')</script>
+  <script>document.write('<script src="jquery-ui-1.9.2.custom.min.js"><\/script>')</script>
+  <script type="text/javascript" src="modbus.js"></script>
+  <script type="text/javascript" src="eline.js"></script>
+    <script>
+    $( document ).ready(function() {
+
+
+    	$( "#vel_slider" ).slider({
+		      value:0,
+		      min: -1500,
+		      max: 1500,
+		      step: 50,
+		      slide: function( event, ui ) {
+		        $( "#vel_amount" ).html( ui.value + " rpm");
+		        result = modbus_write(0x0002, ui.value , 200); // set target
+		      }
+    	});
+    	$( "#vel_amount" ).html( $( "#vel_slider" ).slider( "value" ) + " rpm" );
+    	result = modbus_write(0x0002, 0 , 200);
+
+    	$("#modbus_read").click(function () {
+    		$("#modbus_result").html("Wait");
+    		result = modbus_write(0x1000, 0x10000, 200);
+    		if (result.result == 1)
+    		{
+    			result = modbus_read(0x1000, 200);
+    			$("#modbus_result").html(result.value);
+    		}
+    		else
+    		{
+    		$("#modbus_result").html(result.result);
+    		}
+		});
+
+		//init
+		eline_init();
+
+		$("#console").append("<button id=\"continue\" style=\"float:right\">Continue...</button>");
+
+		$("#continue").click(function() {
+		    	$("#console").fadeOut( "slow", function() {
+		    			$("#gui").show();
+		    			eline_start_gui();
+              eline_power_toggle();
+              console.log(power_toggle);
+		    		});
+    		});
+
+
+    	$("#toggle").click(function() {
+    			eline_power_toggle();
+    		});
+    });
+
+    </script>
+</body>
+</html>
