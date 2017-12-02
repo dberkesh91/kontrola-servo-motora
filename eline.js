@@ -44,6 +44,11 @@ function eline_init()
 		if (result.result == 1) $("#console").append("<span class=\"OK\">OK</span></br>");
 		else $("#console").append("<span class=\"ERROR\">ERROR</span></br>");
 
+		$("#console").append("Mapping current...");
+		result = modbus_write(0x1007, 0x32620000, 200);
+		if (result.result == 1) $("#console").append("<span class=\"OK\">OK</span></br>");
+		else $("#console").append("<span class=\"ERROR\">ERROR</span></br>");
+
 		$("#console").append("Mapping temperature...");
 		result = modbus_write(0x1004, 0x31140000, 200);
 		if (result.result == 1) $("#console").append("<span class=\"OK\">OK</span></br>");
@@ -117,12 +122,16 @@ function eline_polling()
 		result = modbus_read(0x0003, 200); // velocity
 		$("#actual_velocity").html( (result.value) + " rpm");
 
+		result = modbus_read(0x0007, 200); // current
+		$("#actual_current").html( (result.value/1000) + " A");
+
 	}
 	else
 	{
 		$("#actual_voltage").html("- V");
 		$("#actual_temp").html( "- C");
 		$("#actual_velocity").html( "- rpm");
+		$("#actual_current").html("- A");
 	}
 }
 
