@@ -147,7 +147,7 @@ function eline_power_toggle()
 		power_toggle = false;
 		$("#toggle").html("SWITCH ON");
 		$("#current-state").html("The motor is currently off")
-		$("#toggle").css("background-color", "#555");
+		$("#toggle").css("background-color", "#d64937");
 		result = modbus_write(0x0001, 7, 200); // Switch on
 	}
 	else
@@ -155,7 +155,7 @@ function eline_power_toggle()
 		power_toggle = true;
 		$("#toggle").html("SWITCH OFF");
 		$("#current-state").html("The motor is currently on")
-		$("#toggle").css("background-color", "#ff9600");
+		$("#toggle").css("background-color", "#008040");
 		result = modbus_write(0x0001, 0x0f, 200);
 	}
 }

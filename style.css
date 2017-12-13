@@ -1,14 +1,97 @@
 body {
-    font-family:"Ubuntu Light";
-    color:#333
+    background: #1a1a1a;
+    font-family:"Verdana";
+    color:#fff
+}
+
+.servo-title {
+  color: #d64937;
+  font-weight: 700;
+}
+
+.app-info {
+  width: 80%;
+  display: inline-block;
+  background-color: #d64937;
+  color: #fff;
+  font-size: 13px;
+  padding: 15px;
+  border-bottom: 6px solid #942c1e;
+  margin-bottom: 60px;
+}
+
+.student-info {
+  display: inline-block;
+  width: 48px;
+  float: right;
+  background-color: #942c1e;
+  height: 80px;
+  position:absolute;
+  top: 130px;
+}
+
+.slide-student-info {
+  display: inline-block;
+  width: 48px;
+  height: inherit;
+  float: right;
+  background-color: #6a1f16;
+}
+
+.student-information {
+  display: inline-block;
+  height: inherit;
+  float: left;
+  width: 160px;
+  color: #fff;
+  padding:0;
+  margin: 0;
+  padding-left:40px;
+  padding-top: 20px;
+  font-size: 14px;
+}
+
+.hidden {
+  display: none;
+}
+
+.slide-student-info:hover {
+  cursor: pointer;
+}
+
+.right-arrow-img {
+  margin: 29px 0 0 12px;
 }
 
 .zone-title {
-    font-size:26px
+    font-size:26px;
+    text-align: center;
+    padding-bottom: 20px;
 }
 
 .zone-setpoint {
     font-size:42px
+}
+
+.parameter-container {
+  width: 100%;
+  height: 45px;
+  padding-bottom: 15px;
+}
+
+#parameter-image-value {
+  display: inline-block;
+}
+
+.parameter-image {
+  display: inline-block;
+  float: left;
+}
+
+.parameter-value {
+  display: inline-block;
+  float:left;
+  margin-top:5px;
 }
 
 .block {
@@ -16,21 +99,21 @@ body {
     max-width:392px;
     padding:20px;
     margin-top:50px;
-    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
     text-align:left;
 }
 
 #toggle {
     font-size:22px;
     color:#fff;
-    background-color:#ff9600;
+    background-color:#d64937;
     border:0;
     padding:10px;
     cursor:pointer;
     text-decoration:none;
     display: block;
     margin:auto;
-    margin-top:10px
+    margin-top:10px;
+    margin-bottom: 20px;
 }
 
 #relay1 {
@@ -188,10 +271,75 @@ input[type=text] {
   background: yellow;
 }
 
+.ui-slider {
+  background-color: #942c1e !important;
+  border: none !important;
+  margin: 10px 0 10px 0;
+}
+
+.ui-slider-handle {
+  background-color: #d64937 !important;
+  border-radius: 50% !important;
+  border: none !important;
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.ui-slider-handle:focus {
+  outline:0;
+}
+
+.ui-slider-handle:hover {
+  cursor: pointer !important;
+}
+
+button:focus {
+  outline:0;
+}
+
 .slider_values {
   display: inline-block;
   width: 33.33%;
   float: left;
+  text-align: left;
+}
+
+.motor-data {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  color: #bfbfbf;
+  margin-bottom: 60px;
+}
+
+.data-row {
+  border-bottom: 1px solid grey;
+}
+
+.data-row:hover {
+  background-color: #942c1e;
+  color: #fff;
+  cursor: pointer;
+}
+
+.data-70 {
+  width: 70%;
+}
+
+.data-30 {
+  width: 30%;
+}
+
+.padded {
+  padding: 10px 0 10px 0;
+}
+
+.left-padding {
+  padding-left: 10px;
+}
+
+.text-left {
+  text-align: left;
 }
 
 #zero {
@@ -205,4 +353,5 @@ input[type=text] {
 #current-state {
   display: block;
   text-align: center;
+  margin-bottom: 60px;
 }

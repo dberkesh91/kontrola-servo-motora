@@ -10,33 +10,72 @@
 <div id="console" class="block">Initialization.....</br></div>
 
 <div id="gui" style="display:none" class="block">
-    <div class="zone-title">Projekat</div>
+    <div class="zone-title"><span class="servo-title">servo</span>Control</div>
+
+    <div class="app-info">
+      <span>Web aplication that controls a wifi connected</span><br/>
+      <span>servo motor. Sends instructions and</span><br/>
+      <span>reads parameters communicating via </span><br/>
+      <span>modbus protocol.</span><br/>
+    </div>
+    <div class="student-info">
+      <ul class="student-information hidden">
+        <li>Denis Dvoracko</li>
+        <li>Andrej Sabados</li>
+      </ul>
+      <span class="slide-student-info"><img src="images/right-arrow.svg" width="22px" height="22px" class="right-arrow-img"></span>
+    </div>
     <button id="toggle">SWITCH ON</button>
     <div id="current-state">The motor is currently OFF</div>
-    <hr>
     <div style="text-align:center">
-        <table style="width:100%; text-align:center">
-            <tr>
-                <td>
-
-                </td>
-                <td>
+        <table class="motor-data">
+            <tr class="data-row" style="font-size:14px">
+                <td class="data-70 padded left-padding">name</td>
+                <td class="data-30 padded text-left">value</td>
+            </tr>
+            <tr class="data-row">
+                <td class="data-70 padded left-padding">Actual velocity</td>
+                <td id="actual_velocity" class="data-30 padded text-left"></td>
+                <!-- <td>
                     <div class="zone-setpoint" id="actual_velocity">- rpm</div>
-                </td>
-                <td>
-
-                </td>
+                </td> -->
+            </tr>
+            <tr class="data-row">
+                <td class="data-70 padded left-padding">Temperature</td>
+                <td id="actual_temp" class="data-30 padded text-left">- C</td>
+            </tr>
+            <tr class="data-row">
+                <td class="data-70 padded left-padding">Voltage</td>
+                <td id="actual_voltage" class="data-30 padded text-left">- V</td>
+            </tr>
+            <tr class="data-row">
+                <td class="data-70 padded left-padding">Current</td>
+                <td id="actual_current" class="data-30 padded text-left">- A</td>
+            </tr>
+            <tr class="data-row">
+                <td class="data-70 padded left-padding">Target velocity</td>
+                <td id="vel_amount" class="data-30 padded text-left"></td>
             </tr>
         </table>
-		<p>Temperature: <span id="actual_temp" class="zone-temperature">- C</span></p>
-		<p>Voltage: <span id="actual_voltage" class="zone-temperature">- V</span></p>
-    <p>Current: <span id="actual_current" class="zone-temperature">- A</span></p>
+    <!-- <div class="parameter-container">
+      <div id="parameter-image-value">
+        <div class="parameter-value">Temperature: <span id="actual_temp" class="zone-temperature">- C</span></div>
+      </div>
+    </div>
+    <div class="parameter-container">
+      <div id="parameter-image-value">
+        <div class="parameter-value">Voltage: <span id="actual_voltage" class="zone-temperature">- V</span></div>
+      </div>
+    </div>
+    <div class="parameter-container">
+      <div id="parameter-image-value">
+        <div class="parameter-value">Current: <span id="actual_current" class="zone-temperature">- A</span></div>
+      </div>
     </div>
 
-    <div style="font-size:18px">Target velocity <span type="text" id="vel_amount" readonly style="border:0; color:#f6931f; font-weight:bold;"></span></div>
+    <div style="font-size:18px">Target velocity <span type="text" id="vel_amount" readonly style="border:0; color:#d64937; font-weight:bold;"></span></div> -->
 
 	<div id="datetime"></div>
-    <hr>
 
     <div id="vel_slider"></div>
     <div id="vel_slider_values">
@@ -51,6 +90,7 @@
   <script>document.write('<script src="jquery-ui-1.9.2.custom.min.js"><\/script>')</script>
   <script type="text/javascript" src="modbus.js"></script>
   <script type="text/javascript" src="eline.js"></script>
+  <script type="text/javascript" src="dynamics.js"></script>
     <script>
     $( document ).ready(function() {
 

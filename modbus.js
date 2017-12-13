@@ -4,7 +4,7 @@ function modbus_read(register, timeout) {
     var value = 0
 
 		$.ajax({
-			url: "http://192.168.4.1?read=" + register + "&timeout="+timeout,
+			url: "http://192.168.4.1/control/modbus.ajax?read=" + register + "&timeout="+timeout,
 			dataType: 'json',
 			async: false,
 			cache: false,
@@ -32,7 +32,7 @@ function modbus_write(register, write_value, timeout) {
     var ret_value = 0
 
 		$.ajax({
-			url: "http://192.168.4.1?write=" + register + "&value="+ write_value + "&timeout="+timeout,
+			url: "http://192.168.4.1/control/modbus.ajax?read=" + register + "&value="+ write_value + "&timeout="+timeout,
 			dataType: 'json',
 			async: false,
 			cache: false,
